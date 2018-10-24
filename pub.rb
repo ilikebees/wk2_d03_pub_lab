@@ -14,8 +14,18 @@ class Pub
   end
 
   def customer_buys_drink(customer, drink)
-    @till += drink.price
-    customer.buy_drink(drink.price)
+    if customer.wallet >= drink.price && age_check(customer)
+      @till += drink.price
+      customer.buy_drink(drink)
+    end
+  end
+
+  def age_check(customer)
+    if customer.age > 18
+      return true
+    else
+      return false
+    end
   end
 
 end
